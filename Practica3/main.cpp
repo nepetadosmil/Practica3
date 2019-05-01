@@ -18,7 +18,18 @@ int main(int argc, char* argv[]) {
 	imprimirListaContigua(&lista);
 
 	try {
+		std::cout << "Insertion sort DESC:\n";
 		sorter.insertionSort(&lista, DESC);
+		imprimirListaContigua(&lista);
+		std::cout << "Insertion sort ASC:\n";
+		sorter.insertionSort(&lista, ASC);
+		imprimirListaContigua(&lista);
+
+		std::cout << "Selection sort DESC:\n";
+		sorter.selectionSort(&lista, DESC);
+		imprimirListaContigua(&lista);
+		std::cout << "Selection sort ASC:\n";
+		sorter.selectionSort(&lista, ASC);
 		imprimirListaContigua(&lista);
 	}
 	catch (const std::invalid_argument& e) {

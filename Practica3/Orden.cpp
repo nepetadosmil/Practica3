@@ -36,8 +36,7 @@ bool Orden::esOrdenada(ListaContigua* lista, unsigned short order)
 void Orden::insertionSort(ListaContigua* lista, unsigned short order)
 {
 	DATA_TYPE tmp;
-	unsigned i;
-	int j;
+	unsigned i, j;
 
 	for (i = 1; i < lista->getN(); ++i) {
 		tmp = lista->getValor(i);
@@ -53,6 +52,27 @@ void Orden::insertionSort(ListaContigua* lista, unsigned short order)
 		else {
 			lista->setValor(j + 1, tmp);
 		}
+	}
+}
+
+
+
+void Orden::selectionSort(ListaContigua* lista, unsigned short order)
+{
+	DATA_TYPE tmp;
+	unsigned i, j, max_min; // max_min is the index of the greatest (or smallest, depending on order) value left
+
+	for (i = 0; i < lista->getN(); ++i) {
+		max_min = i;
+		for (j = i + 1; j < lista->getN(); ++j) { // Find the greatest (or smallest, depending on order) value of those remaining.
+			if (compare(lista->getValor(j), lista->getValor(i), order)) {
+				max_min = j;
+			}
+		}
+
+		tmp = lista->getValor(i);
+		lista->setValor(i, lista->getValor(max_min));
+		lista->setValor(max_min, tmp);
 	}
 }
 

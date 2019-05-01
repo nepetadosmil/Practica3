@@ -28,6 +28,11 @@ public:
 	// @Param	ListaContigua *			lista
 	// @Param	unsigned short			ASC or DESC
 	void insertionSort(ListaContigua* lista, unsigned short order);
+
+	// Orders list by selection sort method
+	// @Param	ListaContigua *			lista
+	// @Param	unsigned short			ASC or DESC
+	void selectionSort(ListaContigua* lista, unsigned short order);
 	~Orden();
 };
 
