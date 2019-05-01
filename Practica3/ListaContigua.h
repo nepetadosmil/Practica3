@@ -1,15 +1,19 @@
 #pragma once
 
+// Tipo de dato almacenado en la lista
+#define DATA_TYPE int
+
 // Numero de posiciones en que se incrementa/decrementa la capacidad de la ListaContigua cada vez que es necesario
 // Precondición: INCREMENTO >= 1
 #define INCREMENTO 2
+
 
 // Clase que representa a una lista contigua en memoria y cuya capacidad se redimensiona automáticamente
 // de modo que el usuario no tiene que preocuparse por su capacidad
 class ListaContigua
 {
 	// Puntero que apuntará a la zona de memoria en donde empieza la ListaContigua
-	int *vector;
+	DATA_TYPE *vector;
 
 	// Numero actual de elementos que tiene la ListaContigua
 	// Precondición: n>=0
@@ -35,7 +39,7 @@ public:
 	// Retorno: el elemento encontrado en esa posición
 	// Precondiciones: posicion en [0, n-1]
 	// Complejidad temporal y espacial: O(1)
-	int getValor(int posicion);
+	DATA_TYPE getValor(int posicion);
 
 	// Modifica un elemento de la ListaContigua
 	// Parámetros:
@@ -44,7 +48,7 @@ public:
 	// Precondiciones:
 	// - posicion en [0, n-1]
 	// Complejidad temporal y espacial: O(1)
-	void setValor(int posicion, int nuevoValor);
+	void setValor(int posicion, DATA_TYPE nuevoValor);
 
 	// Devuelve el tamaño actual de la ListaContigua
 	// Retorno: número actual de elementos de la ListaContigua
@@ -62,7 +66,7 @@ public:
 	// - nuevoValor: el nuevo elemento que queremos poner
 	// Complejidad temporal: O(n)
 	// Complejidad espacial: O(n)
-	void insertarAlFinal (int nuevoValor);
+	void insertarAlFinal (DATA_TYPE nuevoValor);
 
 	// Elimina el elemento de la última posición de la ListaContigua,
 	// disminuyendo posteriormente la capacidad si es necesario
@@ -79,7 +83,7 @@ public:
 	// - posicion en [0, n]
 	// Complejidad temporal: O(n)
 	// Complejidad espacial: O(n)
-	void insertar(int posicion, int nuevoValor);
+	void insertar(int posicion, DATA_TYPE nuevoValor);
 
 	// Elimina un elemento en una posición dada.
 	// Los elementos que había desde posicion+1 hasta el final de la ListaContigua se desplazarán una posición a la izquierda
@@ -103,7 +107,7 @@ public:
 	// Retorno: posición del elemento (de 0 a n-1) si se encuentra, o -1 en caso contrario
 	// Complejidad temporal: O(n)
 	// Complejidad espacial: O(1)
-	int buscar(int elementoABuscar);
+	int buscar(DATA_TYPE elementoABuscar);
 
 	// Destructor. Libera memoria
 	// Complejidad temporal y espacial: O(1)

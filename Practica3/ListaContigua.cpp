@@ -14,12 +14,12 @@ ListaContigua::ListaContigua() {
 	capacidad=0;
 }
 
-int ListaContigua::getValor(int posicion) {
+DATA_TYPE ListaContigua::getValor(int posicion) {
 	assert(posicion >= 0 && posicion <= n-1);
 	return (vector[posicion]);
 }
 
-void ListaContigua::setValor(int posicion, int nuevoValor) {
+void ListaContigua::setValor(int posicion, DATA_TYPE nuevoValor) {
 	assert(posicion >= 0 && posicion <= n-1);
 	vector[posicion] = nuevoValor;
 }
@@ -32,7 +32,7 @@ int ListaContigua::getCapacidad() {
 	return (capacidad);
 }
 
-void ListaContigua::insertarAlFinal (int nuevoValor) {
+void ListaContigua::insertarAlFinal (DATA_TYPE nuevoValor) {
 	insertar(n, nuevoValor);
 }
 
@@ -40,17 +40,17 @@ void ListaContigua::eliminarAlFinal () {
 	eliminar(n - 1);
 }
 
-void ListaContigua::insertar(int posicion, int nuevoValor) {
+void ListaContigua::insertar(int posicion, DATA_TYPE nuevoValor) {
 	assert(posicion >= 0 && posicion <= n);
 
 	// Si la ListaContigua está ya llena, antes de insertar ampliamos su capacidad en INCREMENTO
 	if (isLlena()) {
-		vector = (int*)realloc(vector, sizeof(int)*(capacidad + INCREMENTO));
+		vector = (DATA_TYPE*)realloc(vector, sizeof(DATA_TYPE)*(capacidad + INCREMENTO));
 		capacidad += INCREMENTO;
 	}
 
 	// Dejamos hueco para el nuevo elemento, desplazando a la derecha los que hay a partir de posicion hasta el final
-	memmove(&vector[posicion + 1], &vector[posicion], sizeof(int)*(n - posicion));
+	memmove(&vector[posicion + 1], &vector[posicion], sizeof(DATA_TYPE)*(n - posicion));
 
 	// Metemos el nuevo elemento
 	n++;
@@ -62,12 +62,12 @@ void ListaContigua::eliminar(int posicion) {
 
 	// Tapamos el hueco dejado por el elemento eliminado. Para ello, desplazamos a la izquierda los
 	// elementos que hay a partir de posicion+1 hasta el final
-	memmove(&vector[posicion], &vector[posicion + 1], sizeof(int)*(n - posicion - 1));
+	memmove(&vector[posicion], &vector[posicion + 1], sizeof(DATA_TYPE)*(n - posicion - 1));
 	n--;
 
 	// Si la capacidad sobrante es demasiada (2*INCREMENTO), la reducimos en INCREMENTO unidades
 	if (capacidad - n == 2 * INCREMENTO) {
-		vector = (int*)realloc(vector, sizeof(int)*(capacidad - INCREMENTO));
+		vector = (DATA_TYPE *)realloc(vector, sizeof(DATA_TYPE)*(capacidad - INCREMENTO));
 		capacidad -= INCREMENTO;
 	}
 
@@ -85,7 +85,7 @@ void ListaContigua::concatenar(ListaContigua *listaAConcatenar) {
 	// capacidad en el tamaño de la listaAConcatenar
 	// Complejidad temporal O(n) 
 	// Complejidad espacial O(m+n)
-	vector = (int*)realloc(vector, sizeof(int)*(capacidad + m));
+	vector = (DATA_TYPE *)realloc(vector, sizeof(DATA_TYPE)*(capacidad + m));
 	capacidad += m;
 
 	// Vamos insertando al final elemento a elemento. Fíjate en que insertar un elemento al final
@@ -97,7 +97,7 @@ void ListaContigua::concatenar(ListaContigua *listaAConcatenar) {
 	}
 }
 
-int ListaContigua::buscar(int elementoABuscar) {
+int ListaContigua::buscar(DATA_TYPE elementoABuscar) {
 	int posicion = 0; // Posición actual en donde buscamos
 	bool encontrado = false; // Nos indica si hemos encontrado o no el elemento
 

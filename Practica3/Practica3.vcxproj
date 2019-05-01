@@ -123,6 +123,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="impresionListasContiguas.cpp" />
+    <ClCompile Include="ListaContigua.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Orden.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="impresionListasContiguas.h" />
+    <ClInclude Include="ListaContigua.h" />
+    <ClInclude Include="Orden.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

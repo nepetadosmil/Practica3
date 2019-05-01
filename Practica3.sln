@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practica3", "Practica3\Practica3.vcxproj", "{DA692CCB-FCB2-4E55-8088-5C94097009A8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB803E09-87B5-44B8-B729-51E701AC3FE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
