@@ -31,6 +31,10 @@ int main(int argc, char* argv[]) {
 		std::cout << "Selection sort ASC:\n";
 		sorter.selectionSort(&lista, ASC);
 		imprimirListaContigua(&lista);
+
+
+		//Cause an error to be thrown by not passing a valid parameter (ASC or DESC)
+		sorter.selectionSort(&lista, 5);
 	}
 	catch (const std::invalid_argument& e) {
 		std::cout << e.what() << std::endl;

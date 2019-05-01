@@ -38,13 +38,15 @@ void Orden::insertionSort(ListaContigua* lista, unsigned short order)
 	DATA_TYPE tmp;
 	unsigned i, j;
 
-	for (i = 1; i < lista->getN(); ++i) {
+	for (i = 1; i < lista->getN(); ++i) { // We start at index 1, because we wouldn't be able to compare index 0 with anything
 		tmp = lista->getValor(i);
 
 		for (j = i - 1; j > 0 && compare(tmp, lista->getValor(j), order); --j) {
 			lista->setValor(j + 1, lista->getValor(j));
 		}
 
+		// These if/else are here so we can keep j as an unsigned integer and hence,
+		// be able to parse longer lists with less memory space required
 		if (compare(tmp, lista->getValor(j), order)) {
 			lista->setValor(j + 1, lista->getValor(j));
 			lista->setValor(j, tmp);
