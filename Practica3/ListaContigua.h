@@ -1,6 +1,7 @@
 #pragma once
 
 // Tipo de dato almacenado en la lista
+// @Precond		DATA_TYPE must be comparable with objects of its same class (<, <=, >, >=)
 #define DATA_TYPE int
 
 // Numero de posiciones en que se incrementa/decrementa la capacidad de la ListaContigua cada vez que es necesario
