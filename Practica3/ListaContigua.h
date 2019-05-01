@@ -53,12 +53,12 @@ public:
 	// Devuelve el tamaño actual de la ListaContigua
 	// Retorno: número actual de elementos de la ListaContigua
 	// Complejidad temporal y espacial: O(1)
-	int getN(); 
+	unsigned getN(); 
 
 	// Devuelve la capacidad actual de la ListaContigua
 	// Retorno: número máximo que actualmente podría contener la ListaContigua
 	// Complejidad temporal y espacial: O(1)
-	int getCapacidad(); 
+	unsigned getCapacidad(); 
 
 	// Inserta un nuevo elemento en la última posición de la ListaContigua, 
 	// ampliando previamente la capacidad si es necesario

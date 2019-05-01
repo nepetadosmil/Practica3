@@ -17,9 +17,9 @@ void imprimirListaContigua(ListaContigua *lista) {
 	else {
 		if (lista->getN() > 20) cout << "demasiadosElementosParaMostrar";
 		else {
-			for (int i = 0; i < lista->getN(); i++) {
+			for (unsigned i = 0; i < lista->getN(); i++) {
 				cout << lista->getValor(i);
-				if (i < lista->getN() - 1) cout << ","; // Imprimimos "," si no estamos al final
+				if (i + 1 < lista->getN()) cout << ","; // Imprimimos "," si no estamos al final
 			}
 		}
 	}

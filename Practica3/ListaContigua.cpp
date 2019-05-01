@@ -24,11 +24,11 @@ void ListaContigua::setValor(int posicion, DATA_TYPE nuevoValor) {
 	vector[posicion] = nuevoValor;
 }
 
-int ListaContigua::getN() {
+unsigned ListaContigua::getN() {
 	return (n);
 }
 
-int ListaContigua::getCapacidad() {
+unsigned ListaContigua::getCapacidad() {
 	return (capacidad);
 }
 
