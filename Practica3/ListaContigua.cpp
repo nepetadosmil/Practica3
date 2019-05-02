@@ -14,6 +14,13 @@ ListaContigua::ListaContigua() {
 	capacidad=0;
 }
 
+ListaContigua::ListaContigua(ListaContigua &lista) {
+	this->n = lista.getN();
+	this->capacidad = lista.getCapacidad();
+	this->vector = (DATA_TYPE*)malloc(sizeof(DATA_TYPE) * capacidad);
+	memcpy_s(this->vector, sizeof(DATA_TYPE) * capacidad, lista.vector, sizeof(DATA_TYPE) * n);
+}
+
 DATA_TYPE ListaContigua::getValor(int posicion) {
 	assert(posicion >= 0 && posicion <= n-1);
 	return (vector[posicion]);
