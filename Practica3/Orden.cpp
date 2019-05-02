@@ -16,7 +16,7 @@ bool Orden::compare(DATA_TYPE a, DATA_TYPE b, unsigned short order)
 	case DESC:
 		return a > b;
 	default:
-		throw std::invalid_argument("Invalid sorting order!");
+		throw ORDER_ERR;
 	}
 }
 
@@ -76,6 +76,31 @@ void Orden::selectionSort(ListaContigua* lista, unsigned short order)
 		lista->setValor(i, lista->getValor(max_min));
 		lista->setValor(max_min, tmp);
 	}
+}
+
+
+
+void Orden::bubbleSort(ListaContigua* lista, unsigned short order)
+{
+	bool repeat;
+	unsigned done;
+	DATA_TYPE tmp;
+
+	do {
+		repeat = false;
+		done = 0;
+
+		for (unsigned i = 0; i + 1 + done < lista->getN(); ++i) {
+			if (compare(lista->getValor(i + 1), lista->getValor(i), order)) { // If numbers not in order, swap them
+				tmp = lista->getValor(i);
+				lista->setValor(i, lista->getValor(i + 1));
+				lista->setValor(i + 1, tmp);
+				repeat = true;
+			}
+		}
+		
+		++done; // For efficiency. After n loops, the last n numbers will be in order, so no need to check
+	} while (repeat == true);
 }
 
 

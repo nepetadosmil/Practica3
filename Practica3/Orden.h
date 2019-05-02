@@ -6,6 +6,8 @@
 #define ASC 1
 #define DESC 0
 
+#define ORDER_ERR std::invalid_argument("Invalid sorting order!")
+
 class Orden
 {
 private:
@@ -33,6 +35,12 @@ public:
 	// @Param	ListaContigua *			lista
 	// @Param	unsigned short			ASC or DESC
 	void selectionSort(ListaContigua* lista, unsigned short order);
+
+	// Orders list by bubble sort method
+	// @Param	ListaContigua *			lista
+	// @Param	unsigned short			ASC or DESC
+	void bubbleSort(ListaContigua* lista, unsigned short order);
+
 	~Orden();
 };
 
