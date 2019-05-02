@@ -1,4 +1,5 @@
 #pragma once
+#include <assert.h>
 #include <stdexcept>
 
 #include "ListaContigua.h"
@@ -18,6 +19,27 @@ private:
 	// @Param	unsigned short			ASC or DESC
 	// @Throws	std::invalid_argument
 	bool compare(DATA_TYPE a, DATA_TYPE b, unsigned short order);
+
+	// Spreads listaCompleta into sublista1 and sublista2
+	// @Param	ListaContigua *			listaCompleta
+	// @Param	ListaContigua *			sublista1
+	// @Param	ListaContigua *			sublista2
+	// @Precond	no NULL ptrs
+	// @Precond	listaCompleta n >= 2
+	// @Precond	sublista1 && sublista2 n == 0
+	void repartir(ListaContigua* listaCompleta, ListaContigua* sublista1, ListaContigua* sublista2);
+
+	// Combines the elements from origen1 and origen2 into destino in 'order' order
+	// @Param	ListaContigua *			origen1
+	// @Param	ListaContigua *			origen2
+	// @Param	ListaContigua *			destino
+	// @Param	unigned short			ASC or DESC
+	// @Precond	no NULL ptrs
+	// @Precond	origen1 && origen2 n >= 2
+	// @Precond	destino n == 0
+	// @Precond	esOrdenada(origen1, order) == true
+	// @Precond	esOrdenada(origen2, order) == true
+	void combinar(ListaContigua* origen1, ListaContigua* origen2, ListaContigua* destino, unsigned short order);
 public:
 	Orden();
 
@@ -40,6 +62,11 @@ public:
 	// @Param	ListaContigua *			lista
 	// @Param	unsigned short			ASC or DESC
 	void bubbleSort(ListaContigua* lista, unsigned short order);
+
+	// Orders list by merge sort method
+	// @Param	ListaContigua *			lista
+	// @Param	unsigned short			ASC or DESC
+	void mergeSort(ListaContigua* lista, unsigned short order);
 
 	~Orden();
 };

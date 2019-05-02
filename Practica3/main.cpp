@@ -39,6 +39,13 @@ int main(int argc, char* argv[]) {
 		sorter.bubbleSort(&lista, ASC);
 		imprimirListaContigua(&lista);
 
+		std::cout << "Merge sort DESC:\n";
+		sorter.mergeSort(&lista, DESC);
+		imprimirListaContigua(&lista);
+		std::cout << "Merge sort ASC:\n";
+		sorter.mergeSort(&lista, ASC);
+		imprimirListaContigua(&lista);
+
 
 		//Cause an error to be thrown by not passing a valid parameter (ASC or DESC)
 		sorter.selectionSort(&lista, 5);

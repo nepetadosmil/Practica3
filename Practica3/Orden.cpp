@@ -22,6 +22,55 @@ bool Orden::compare(DATA_TYPE a, DATA_TYPE b, unsigned short order)
 
 
 
+void Orden::repartir(ListaContigua* listaCompleta, ListaContigua* sublista1, ListaContigua* sublista2) {
+	assert(listaCompleta != NULL && sublista1 != NULL && sublista2 != NULL);
+	assert(listaCompleta->getN() >= 2);
+	assert(sublista1->getN() == 0 && sublista2->getN() == 0);
+	unsigned end = listaCompleta->getN();//Guarda longitud
+	unsigned half = end / 2;//Calcula mitad
+
+	for (unsigned i = 0; i < half; ++i) {
+		sublista1->insertarAlFinal(listaCompleta->getValor(0));//Rellena sublista1 con la primera mitad
+		listaCompleta->eliminar(0);
+	}
+	for (unsigned i = half, j = 0; i < end; ++i, ++j) {
+		sublista2->insertarAlFinal(listaCompleta->getValor(0));//Rellena sublista2 con la segunda mitad
+		listaCompleta->eliminar(0);
+	}
+}
+
+
+
+void Orden::combinar(ListaContigua* origen1, ListaContigua* origen2, ListaContigua* destino, unsigned short order) {
+	assert(origen1 != NULL && origen2 != NULL && destino != NULL);
+	assert(origen1->getN() >= 1 && origen2->getN() >= 1);
+	assert(destino->getN() == 0);
+	assert(esOrdenada(origen1, order) && esOrdenada(origen2, order));
+
+	while (origen1->getN() > 0 && origen2->getN() > 0) { // Fill in order until one of both is empty
+		if (compare(origen1->getValor(0), origen2->getValor(0), order)) {
+			destino->insertarAlFinal(origen1->getValor(0));
+			origen1->eliminar(0);
+		}
+		else {
+			destino->insertarAlFinal(origen2->getValor(0));
+			origen2->eliminar(0);
+		}
+	}
+
+	while (origen1->getN() > 0) { // Fill any remaining elements
+		destino->insertarAlFinal(origen1->getValor(0));
+		origen1->eliminar(0);
+	}
+
+	while (origen2->getN() > 0) { // Fill any remaining elements
+		destino->insertarAlFinal(origen2->getValor(0));
+		origen2->eliminar(0);
+	}
+}
+
+
+
 bool Orden::esOrdenada(ListaContigua* lista, unsigned short order)
 {
 	for (unsigned i = 0; i + 1 < lista->getN(); ++i) {
@@ -62,7 +111,7 @@ void Orden::insertionSort(ListaContigua* lista, unsigned short order)
 void Orden::selectionSort(ListaContigua* lista, unsigned short order)
 {
 	DATA_TYPE tmp;
-	unsigned i, j, max_min; // max_min is the index of the greatest (or smallest, depending on order) value left
+	unsigned i, j, max_min; // max_min is the index of the greatest (or smallest, depending on order) value that's left
 
 	for (i = 0; i < lista->getN(); ++i) {
 		max_min = i;
@@ -83,12 +132,11 @@ void Orden::selectionSort(ListaContigua* lista, unsigned short order)
 void Orden::bubbleSort(ListaContigua* lista, unsigned short order)
 {
 	bool repeat;
-	unsigned done;
+	unsigned done = 0;
 	DATA_TYPE tmp;
 
 	do {
 		repeat = false;
-		done = 0;
 
 		for (unsigned i = 0; i + 1 + done < lista->getN(); ++i) {
 			if (compare(lista->getValor(i + 1), lista->getValor(i), order)) { // If numbers not in order, swap them
@@ -101,6 +149,23 @@ void Orden::bubbleSort(ListaContigua* lista, unsigned short order)
 		
 		++done; // For efficiency. After n loops, the last n numbers will be in order, so no need to check
 	} while (repeat == true);
+}
+
+
+
+void Orden::mergeSort(ListaContigua* lista, unsigned short order)
+{
+	if (lista->getN() == 1)
+		return;
+
+	ListaContigua lista1;
+	ListaContigua lista2;
+	repartir(lista, &lista1, &lista2);
+
+	mergeSort(&lista1, order);
+	mergeSort(&lista2, order);
+
+	combinar(&lista1, &lista2, lista, order);
 }
 
 
