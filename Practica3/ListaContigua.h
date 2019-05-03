@@ -38,6 +38,9 @@ public:
 	// Constructor copia
 	ListaContigua(ListaContigua &lista);
 
+	// Devuelve el puntero a la lista
+	DATA_TYPE* getContent();
+
 	// Devuelve un elemento de la ListaContigua
 	// Parámetro: la posición del elemento
 	// Retorno: el elemento encontrado en esa posición

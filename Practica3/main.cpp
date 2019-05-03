@@ -46,6 +46,12 @@ int main(int argc, char* argv[]) {
 		sorter.mergeSort(&lista, ASC);
 		imprimirListaContigua(&lista);
 
+		std::cout << "Quick sort DESC:\n";
+		sorter.quickSort(&lista, DESC);
+		imprimirListaContigua(&lista);
+		std::cout << "Quick sort ASC:\n";
+		sorter.quickSort(&lista, ASC);
+		imprimirListaContigua(&lista);
 
 		//Cause an error to be thrown by not passing a valid parameter (ASC or DESC)
 		sorter.selectionSort(&lista, 5);

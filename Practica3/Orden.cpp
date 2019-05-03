@@ -6,17 +6,28 @@ Orden::Orden()
 }
 
 
+/****************************************************/
+int compareAsc(const void* a, const void* b)
+{
+	return (*(DATA_TYPE*)a < *(DATA_TYPE*)b) ? 0 : 1;
+}
+int compareDesc(const void* a, const void* b)
+{
+	return (*(DATA_TYPE*)a > *(DATA_TYPE*)b) ? 0 : 1;
+}
+/****************************************************/
+
 
 bool Orden::compare(DATA_TYPE a, DATA_TYPE b, unsigned short order)
 {
 	switch (order)
 	{
 	case ASC:
-		return a < b;
+		return compareAsc(&b, &a);
 	case DESC:
-		return a > b;
+		return compareDesc(&b, &a);
 	default:
-		throw ORDER_ERR;
+		throw std::invalid_argument("Invalid sorting order!");
 	}
 }
 
@@ -168,6 +179,21 @@ void Orden::mergeSort(ListaContigua* lista, unsigned short order)
 	combinar(&lista1, &lista2, lista, order);
 }
 
+
+
+void Orden::quickSort(ListaContigua* lista, unsigned short order)
+{
+	switch (order) {
+	case ASC:
+		qsort(lista->getContent(), lista->getN(), sizeof(DATA_TYPE), compareAsc);
+		break;
+	case DESC:
+		qsort(lista->getContent(), lista->getN(), sizeof(DATA_TYPE), compareDesc);
+		break;
+	default:
+		throw std::invalid_argument("Invalid sorting order!");
+	}
+}
 
 
 Orden::~Orden()

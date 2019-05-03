@@ -21,6 +21,11 @@ ListaContigua::ListaContigua(ListaContigua &lista) {
 	memcpy_s(this->vector, sizeof(DATA_TYPE) * capacidad, lista.vector, sizeof(DATA_TYPE) * n);
 }
 
+DATA_TYPE *ListaContigua::getContent()
+{
+	return this->vector;
+}
+
 DATA_TYPE ListaContigua::getValor(int posicion) {
 	assert(posicion >= 0 && posicion <= n-1);
 	return (vector[posicion]);

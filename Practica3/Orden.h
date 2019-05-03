@@ -1,5 +1,6 @@
 #pragma once
 #include <assert.h>
+#include <cstdlib>
 #include <stdexcept>
 
 #include "ListaContigua.h"
@@ -7,11 +8,15 @@
 #define ASC 1
 #define DESC 0
 
-#define ORDER_ERR std::invalid_argument("Invalid sorting order!")
 
 class Orden
 {
 private:
+	// Used by qsort function to compare elements
+	int compareQSortASC(const void* a, const void* b);
+	int compareQSortDESC(const void* a, const void* b);
+	
+	
 	// Compares a and b
 	// E.g.: compare(1, 2, ASC) would return true, because 1, 2 is correct in ASC order
 	// @Param	DATA_TYPE				a
@@ -67,6 +72,12 @@ public:
 	// @Param	ListaContigua *			lista
 	// @Param	unsigned short			ASC or DESC
 	void mergeSort(ListaContigua* lista, unsigned short order);
+
+	// Orders list by quick sort method
+	// @Param	ListaContigua *			lista
+	// @Param	unsigned short			ASC or DESC
+	// @Throws	std::invalid_argument
+	void quickSort(ListaContigua* lista, unsigned short order);
 
 	~Orden();
 };
