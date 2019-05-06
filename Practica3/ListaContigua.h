@@ -1,5 +1,9 @@
 #pragma once
 
+#include <cassert>
+#include <cstdlib> // Para realloc()
+#include <cstring> // Para memmove()
+
 // Type of data stored in list
 // @Precond		DATA_TYPE must be comparable with objects of its same class (<, <=, >, >=)
 #define DATA_TYPE int

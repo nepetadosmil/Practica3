@@ -1,7 +1,6 @@
 #include "ListaContigua.h"
-#include "cassert"
-#include "cstdlib" // Para realloc()
-#include "cstring" // Para memmove()
+
+
 using namespace std;
 
 bool ListaContigua::isLlena() {
