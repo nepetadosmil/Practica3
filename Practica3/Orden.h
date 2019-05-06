@@ -6,6 +6,10 @@
 
 #include "ListaContigua.h"
 
+// Values range (used in the rangeSort function). Both constant values are included in range.
+#define MIN_VALUE 0
+#define MAX_VALUE 99
+
 #define ASC 1
 #define DESC 0
 
