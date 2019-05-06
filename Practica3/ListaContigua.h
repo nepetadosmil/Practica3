@@ -12,7 +12,6 @@
 // Precondición: INCREMENTO >= 1
 #define INCREMENTO 2
 
-
 // Clase que representa a una lista contigua en memoria y cuya capacidad se redimensiona automáticamente
 // de modo que el usuario no tiene que preocuparse por su capacidad
 class ListaContigua

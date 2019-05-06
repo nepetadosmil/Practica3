@@ -1,6 +1,5 @@
 #include "ListaContigua.h"
 
-
 using namespace std;
 
 bool ListaContigua::isLlena() {
@@ -17,7 +16,8 @@ ListaContigua::ListaContigua(ListaContigua &lista) {
 	this->n = lista.getN();
 	this->capacidad = lista.getCapacidad();
 	this->vector = (DATA_TYPE*)malloc(sizeof(DATA_TYPE) * capacidad);
-	memcpy_s(this->vector, sizeof(DATA_TYPE) * capacidad, lista.vector, sizeof(DATA_TYPE) * n);
+	//memcpy_s(this->vector, sizeof(DATA_TYPE) * capacidad, lista.vector, sizeof(DATA_TYPE) * n);
+	memcpy(this->vector, lista.vector, sizeof(DATA_TYPE) * n);
 }
 
 DATA_TYPE *ListaContigua::getContent()
