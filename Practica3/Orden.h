@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <cstdlib>
 #include <stdexcept>
+#include <typeinfo>
 
 #include "ListaContigua.h"
 
@@ -11,12 +12,7 @@
 
 class Orden
 {
-private:
-	// Used by qsort function to compare elements
-	int compareQSortASC(const void* a, const void* b);
-	int compareQSortDESC(const void* a, const void* b);
-	
-	
+private:	
 	// Compares a and b
 	// E.g.: compare(1, 2, ASC) would return true, because 1, 2 is correct in ASC order
 	// @Param	DATA_TYPE				a
@@ -78,6 +74,16 @@ public:
 	// @Param	unsigned short			ASC or DESC
 	// @Throws	std::invalid_argument
 	void quickSort(ListaContigua* lista, unsigned short order);
+
+	#if defined(MIN_VALUE) && defined(MAX_VALUE)
+	// Orders list when knowing the range in use
+	// @Param	ListaContigua *			lista
+	// @Param	unsigned short			ASC or DESC
+	// @Precond	MAX_VALUE >= MIN_VALUE
+	// @Precond DATA_TYPE == int
+	// @Throws	std::invalid_argument
+	void rangeSort(ListaContigua* lista, unsigned short order);
+	#endif
 
 	~Orden();
 };

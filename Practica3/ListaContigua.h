@@ -1,8 +1,12 @@
 #pragma once
 
-// Tipo de dato almacenado en la lista
+// Type of data stored in list
 // @Precond		DATA_TYPE must be comparable with objects of its same class (<, <=, >, >=)
 #define DATA_TYPE int
+
+// Value possible range (used in the rangeSort function). Both constant values are included in range.
+#define MIN_VALUE 0
+#define MAX_VALUE 99
 
 // Numero de posiciones en que se incrementa/decrementa la capacidad de la ListaContigua cada vez que es necesario
 // Precondición: INCREMENTO >= 1

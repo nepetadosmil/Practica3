@@ -53,6 +53,13 @@ int main(int argc, char* argv[]) {
 		sorter.quickSort(&lista, ASC);
 		imprimirListaContigua(&lista);
 
+		std::cout << "Range sort DESC:\n";
+		sorter.rangeSort(&lista, DESC);
+		imprimirListaContigua(&lista);
+		std::cout << "Range sort ASC:\n";
+		sorter.rangeSort(&lista, ASC);
+		imprimirListaContigua(&lista);
+
 		//Cause an error to be thrown by not passing a valid parameter (ASC or DESC)
 		sorter.selectionSort(&lista, 5);
 	}

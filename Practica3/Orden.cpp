@@ -6,7 +6,8 @@ Orden::Orden()
 }
 
 
-/****************************************************/
+/****************************************************************/
+/* These functions are called directly by compare and quickSort */
 int compareAsc(const void* a, const void* b)
 {
 	return (*(DATA_TYPE*)a < *(DATA_TYPE*)b) ? 0 : 1;
@@ -15,7 +16,7 @@ int compareDesc(const void* a, const void* b)
 {
 	return (*(DATA_TYPE*)a > *(DATA_TYPE*)b) ? 0 : 1;
 }
-/****************************************************/
+/****************************************************************/
 
 
 bool Orden::compare(DATA_TYPE a, DATA_TYPE b, unsigned short order)
@@ -194,6 +195,57 @@ void Orden::quickSort(ListaContigua* lista, unsigned short order)
 		throw std::invalid_argument("Invalid sorting order!");
 	}
 }
+
+
+#if defined(MIN_VALUE) && defined(MAX_VALUE)
+void Orden::rangeSort(ListaContigua* lista, unsigned short order)
+{
+	assert(MAX_VALUE >= MIN_VALUE);
+	assert(typeid(DATA_TYPE) == typeid(int));
+	
+	unsigned range = (MAX_VALUE - MIN_VALUE) + 1; // Possible values
+	unsigned *values = new unsigned[range];
+
+	for (unsigned i = 0; i < range; ++i) // INIT list
+		values[i] = 0;
+
+	while(lista->getN() > 0){
+		++values[lista->getValor(lista->getN() - 1)]; // Always get last value so list space reallocation doesn't need to move elements
+		lista->eliminarAlFinal();
+	}
+
+
+	switch (order) {
+	case ASC: // Ascending order
+		for (unsigned i = 0; i < range; ++i) { // Populate original list with values in ASC order
+			while (values[i] > 0) {
+				lista->insertarAlFinal(i);
+				--values[i];
+			}
+		}
+		break;
+
+	case DESC: // Descending order
+		for (unsigned i = range - 1; i > 0; --i) { // Populate original list with values in DESC order
+			while (values[i] > 0) {
+				lista->insertarAlFinal(i);
+				--values[i];
+			}
+		}
+		while (values[0] > 0) {
+			lista->insertarAlFinal(0);
+			--values[0];
+		}
+		break;
+	
+	default: // Invalid sorting order
+		throw std::invalid_argument("Invalid sorting order!");
+	}
+
+	delete[] values;
+}
+#endif
+
 
 
 Orden::~Orden()
