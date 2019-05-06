@@ -51,6 +51,7 @@ public:
 	// Checks if list is ordered
 	// @Param	ListaContigua *			lista
 	// @Param	unsigned short			ASC or DESC
+	// @Returns	bool					true if list is in 'order' order.
 	bool esOrdenada(ListaContigua* lista, unsigned short order);
 
 	// Orders list by insertion sort method
