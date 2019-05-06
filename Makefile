@@ -1,6 +1,6 @@
 #### PROJECT SETTINGS ####
 # The name of the executable to be created
-BIN_NAME := Practica3
+BIN_NAME := Practica3Build
 # Compiler used
 CXX ?= g++
 # Extension of source files used in the project
