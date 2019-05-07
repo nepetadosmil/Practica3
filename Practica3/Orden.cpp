@@ -6,27 +6,37 @@ Orden::Orden()
 }
 
 
-/****************************************************************/
-/* These functions are called directly by compare and quickSort */
+/**************************************************/
+/* These functions are used directly by quickSort */
+// We don't compare a == b in the second cases for
+// efficiency when calling from Orden::compare, as
+// that function is called more often and will only
+// call these if it knows already a != b.
 int compareAsc(const void* a, const void* b)
 {
-	return (*(DATA_TYPE*)a < *(DATA_TYPE*)b) ? 0 : 1;
+	if (*(DATA_TYPE*)a < *(DATA_TYPE*)b) return -1;
+	else if (*(DATA_TYPE*)a > *(DATA_TYPE*)b) return 1;
+	else return 0;
 }
 int compareDesc(const void* a, const void* b)
 {
-	return (*(DATA_TYPE*)a > *(DATA_TYPE*)b) ? 0 : 1;
+	if (*(DATA_TYPE*)a > *(DATA_TYPE*)b) return -1;
+	else if (*(DATA_TYPE*)a < *(DATA_TYPE*)b) return 1;
+	else return 0;
 }
-/****************************************************************/
+/**************************************************/
 
 
 bool Orden::compare(DATA_TYPE a, DATA_TYPE b, unsigned short order)
 {
+	if (a == b) return true; // If equal, they're in order (doesn't matter which goes first)
+
 	switch (order)
 	{
 	case ASC:
-		return compareAsc(&b, &a);
+		return (compareAsc(&a, &b) == -1);
 	case DESC:
-		return compareDesc(&b, &a);
+		return (compareDesc(&a, &b) == -1);
 	default:
 		throw std::invalid_argument("Invalid sorting order!");
 	}
@@ -128,7 +138,7 @@ void Orden::selectionSort(ListaContigua* lista, unsigned short order)
 	for (i = 0; i < lista->getN(); ++i) {
 		max_min = i;
 		for (j = i + 1; j < lista->getN(); ++j) { // Find the greatest (or smallest, depending on order) value of those remaining.
-			if (compare(lista->getValor(j), lista->getValor(i), order)) {
+			if (compare(lista->getValor(j), lista->getValor(max_min), order)) {
 				max_min = j;
 			}
 		}

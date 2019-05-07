@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="impresionListasContiguas.h" />
     <ClInclude Include="ListaContigua.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Orden.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,10 +4,7 @@
 /*   RAÚL  SANCHO   */
 /********************/
 
-#include "impresionListasContiguas.h"
-#include "ListaContigua.h"
-#include "Orden.h"
-#include <time.h>
+#include "main.h"
 
 int main(int argc, char* argv[]) {
 	ListaContigua listaPorInsercion;
@@ -17,8 +14,9 @@ int main(int argc, char* argv[]) {
 	std::cout << "Tamano de la lista: ";
 	std::cin >> size;
 
+	srand(NULL); // Random seed
 	for (unsigned i = 0; i < size; ++i)
-		listaPorInsercion.insertarAlFinal(i);
+		listaPorInsercion.insertarAlFinal(rand() % (MAX_VALUE + 1)); // Rellenar con números entre 0 y MAX_VALUE
 
 	ListaContigua listaPorSeleccion(listaPorInsercion);
 	ListaContigua listaPorBubble(listaPorInsercion);
@@ -41,7 +39,7 @@ int main(int argc, char* argv[]) {
 		sorter.insertionSort(&listaPorInsercion, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Insercion en el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por INSERCION en  el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
 		if(sorter.esOrdenada(&listaPorInsercion, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// volver a ordenar ascendente
@@ -49,7 +47,7 @@ int main(int argc, char* argv[]) {
 		sorter.insertionSort(&listaPorInsercion, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Insercion en el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por INSERCION en  el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorInsercion, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// ordenar descendente
@@ -57,7 +55,7 @@ int main(int argc, char* argv[]) {
 		sorter.insertionSort(&listaPorInsercion, DESC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Insercion en el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por INSERCION en  el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorInsercion, DESC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		std::cout << std::endl;
@@ -71,7 +69,7 @@ int main(int argc, char* argv[]) {
 		sorter.selectionSort(&listaPorSeleccion, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Seleccion en el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por SELECCION en  el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorSeleccion, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// volver a ordenar ascendente
@@ -79,7 +77,7 @@ int main(int argc, char* argv[]) {
 		sorter.selectionSort(&listaPorSeleccion, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Seleccion en el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por SELECCION en  el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorSeleccion, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// ordenar descendente
@@ -87,7 +85,7 @@ int main(int argc, char* argv[]) {
 		sorter.selectionSort(&listaPorSeleccion, DESC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Seleccion en el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por SELECCION en  el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorSeleccion, DESC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		std::cout << std::endl;
@@ -101,7 +99,7 @@ int main(int argc, char* argv[]) {
 		sorter.bubbleSort(&listaPorBubble, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Bubble en el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por BUBBLE en el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorBubble, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// volver a ordenar ascendente
@@ -109,7 +107,7 @@ int main(int argc, char* argv[]) {
 		sorter.bubbleSort(&listaPorBubble, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Bubble en el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por BUBBLE en el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorBubble, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// ordenar descendente
@@ -117,7 +115,7 @@ int main(int argc, char* argv[]) {
 		sorter.bubbleSort(&listaPorBubble, DESC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Bubble en el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por BUBBLE en el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorBubble, DESC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		std::cout << std::endl;
@@ -131,7 +129,7 @@ int main(int argc, char* argv[]) {
 		sorter.mergeSort(&listaPorMerge, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Merge en el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por MERGE en el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorMerge, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// volver a ordenar ascendente
@@ -139,7 +137,7 @@ int main(int argc, char* argv[]) {
 		sorter.mergeSort(&listaPorMerge, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Merge en el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por MERGE en el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorMerge, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// ordenar descendente
@@ -147,7 +145,7 @@ int main(int argc, char* argv[]) {
 		sorter.mergeSort(&listaPorMerge, DESC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Merge en el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por MERGE en el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorMerge, DESC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		std::cout << std::endl;
@@ -161,7 +159,7 @@ int main(int argc, char* argv[]) {
 		sorter.quickSort(&listaPorQuick, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por QucickSort en el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por QUICKSORT en el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorQuick, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// volver a ordenar ascendente
@@ -169,7 +167,7 @@ int main(int argc, char* argv[]) {
 		sorter.quickSort(&listaPorQuick, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por QucickSort en el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por QUICKSORT en el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorQuick, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// ordenar descendente
@@ -177,7 +175,7 @@ int main(int argc, char* argv[]) {
 		sorter.quickSort(&listaPorQuick, DESC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por QucickSort en el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por QUICKSORT en el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorQuick, DESC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		std::cout << std::endl;
@@ -191,7 +189,7 @@ int main(int argc, char* argv[]) {
 		sorter.rangeSort(&listaPorRange, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Range en el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por RANGO en el caso general he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorRange, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// volver a ordenar ascendente
@@ -199,7 +197,7 @@ int main(int argc, char* argv[]) {
 		sorter.rangeSort(&listaPorRange, ASC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Range en el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por RANGO en el mejor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorRange, ASC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		// ordenar descendente
@@ -207,7 +205,7 @@ int main(int argc, char* argv[]) {
 		sorter.rangeSort(&listaPorRange, DESC);
 		numeroClicksFin = clock();
 		segundosTranscurridos = ((float)numeroClicksFin - numeroClicksInicio) / CLOCKS_PER_SEC;
-		printf("Con ordenacion por Range en el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
+		printf("Con ordenacion por RANGO en el peor caso he tardado %.3f segundos.\n", segundosTranscurridos);
 		if (sorter.esOrdenada(&listaPorRange, DESC) == false) printf(">>>> EL ALGORITMO NO HA FUNCIONADA CORRECTAMENTE!!! <<<<\n");
 
 		std::cout << std::endl;
