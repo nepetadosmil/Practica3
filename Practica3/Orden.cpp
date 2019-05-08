@@ -208,15 +208,13 @@ void Orden::quickSort(ListaContigua* lista, size_t order, int left, int right)
 		}
 	}
 
-	Orden* ordenador = new Orden(); // Prevents stack overflow with long lists
 
 	/* recursion */
 	if (left < j)
-		ordenador->quickSort(lista, order, left, j);
+		this->quickSort(lista, order, left, j);
 	if (i < right)
-		ordenador->quickSort(lista, order, i, right);
+		this->quickSort(lista, order, i, right);
 
-	delete ordenador;
 }
 
 
