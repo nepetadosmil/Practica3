@@ -6,26 +6,6 @@ Orden::Orden()
 }
 
 
-/**************************************************/
-/* These functions are used directly by quickSort */
-// We don't compare a == b in the second cases for
-// efficiency when calling from Orden::compare, as
-// that function is called more often and will only
-// call these if it knows already a != b.
-int compareAsc(const void* a, const void* b)
-{
-	if (*(DATA_TYPE*)a < *(DATA_TYPE*)b) return -1;
-	else if (*(DATA_TYPE*)a > *(DATA_TYPE*)b) return 1;
-	else return 0;
-}
-int compareDesc(const void* a, const void* b)
-{
-	if (*(DATA_TYPE*)a > *(DATA_TYPE*)b) return -1;
-	else if (*(DATA_TYPE*)a < *(DATA_TYPE*)b) return 1;
-	else return 0;
-}
-/**************************************************/
-
 
 bool Orden::compare(DATA_TYPE a, DATA_TYPE b, unsigned short order)
 {
@@ -34,9 +14,9 @@ bool Orden::compare(DATA_TYPE a, DATA_TYPE b, unsigned short order)
 	switch (order)
 	{
 	case ASC:
-		return (compareAsc(&a, &b) == -1);
+		return (a < b);
 	case DESC:
-		return (compareDesc(&a, &b) == -1);
+		return (a > b);
 	default:
 		throw std::invalid_argument("Invalid sorting order!");
 	}
@@ -192,18 +172,51 @@ void Orden::mergeSort(ListaContigua* lista, unsigned short order)
 
 
 
-void Orden::quickSort(ListaContigua* lista, unsigned short order)
+void Orden::quickSort(ListaContigua* lista, size_t order, int left, int right)
 {
-	switch (order) {
-	case ASC:
-		qsort(lista->getContent(), lista->getN(), sizeof(DATA_TYPE), compareAsc);
-		break;
-	case DESC:
-		qsort(lista->getContent(), lista->getN(), sizeof(DATA_TYPE), compareDesc);
-		break;
-	default:
-		throw std::invalid_argument("Invalid sorting order!");
+	if (left > right) { // User only needs to input list and desired order
+		left = 0;
+		right = lista->getN() - 1;
 	}
+
+
+	int i = left, j = right;
+
+	DATA_TYPE tmp;
+	DATA_TYPE pivot = lista->getValor((left + right) / 2);
+
+	/* partition */
+	while (i < j) {
+		switch (order) {
+		case ASC:
+			for (i; lista->getValor(i) < pivot; ++i);
+			for (j; lista->getValor(j) > pivot; --j);
+			break;
+		case DESC:
+			for (i; lista->getValor(i) > pivot; ++i);
+			for (j; lista->getValor(j) < pivot; --j);
+			break;
+		default: // Invalid sorting order
+			throw std::invalid_argument("Invalid sorting order!");
+		}
+		if (i <= j) {
+			tmp = lista->getValor(i);
+			lista->setValor(i, lista->getValor(j));
+			lista->setValor(j, tmp);
+			++i;
+			--j;
+		}
+	}
+
+	Orden* ordenador = new Orden(); // Prevents stack overflow with long lists
+
+	/* recursion */
+	if (left < j)
+		ordenador->quickSort(lista, order, left, j);
+	if (i < right)
+		ordenador->quickSort(lista, order, i, right);
+
+	delete ordenador;
 }
 
 

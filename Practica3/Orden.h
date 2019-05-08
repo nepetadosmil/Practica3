@@ -45,6 +45,7 @@ private:
 	// @Precond	esOrdenada(origen1, order) == true
 	// @Precond	esOrdenada(origen2, order) == true
 	void combinar(ListaContigua* origen1, ListaContigua* origen2, ListaContigua* destino, unsigned short order);
+
 public:
 	Orden();
 
@@ -78,7 +79,7 @@ public:
 	// @Param	ListaContigua *			lista
 	// @Param	unsigned short			ASC or DESC
 	// @Throws	std::invalid_argument
-	void quickSort(ListaContigua* lista, unsigned short order);
+	void quickSort(ListaContigua* lista, size_t order, int left = 1, int right = 0);
 
 	#if defined(MIN_VALUE) && defined(MAX_VALUE)
 	// Orders list when knowing the range in use
