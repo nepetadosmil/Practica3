@@ -6,10 +6,10 @@
 
 #include "main.h"
 
-int main(int argc, char* argv[]) {
+int main() {
 	ListaContigua listaPorInsercion;
 	Orden sorter;
-	int size;
+	unsigned size;
 
 	std::cout << "Tamano de la lista: ";
 	std::cin >> size;

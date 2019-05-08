@@ -189,12 +189,12 @@ void Orden::quickSort(ListaContigua* lista, size_t order, int left, int right)
 	while (i < j) {
 		switch (order) {
 		case ASC:
-			for (i; lista->getValor(i) < pivot; ++i);
-			for (j; lista->getValor(j) > pivot; --j);
+			for (; lista->getValor(i) < pivot; ++i);
+			for (; lista->getValor(j) > pivot; --j);
 			break;
 		case DESC:
-			for (i; lista->getValor(i) > pivot; ++i);
-			for (j; lista->getValor(j) < pivot; --j);
+			for (; lista->getValor(i) > pivot; ++i);
+			for (; lista->getValor(j) < pivot; --j);
 			break;
 		default: // Invalid sorting order
 			throw std::invalid_argument("Invalid sorting order!");
